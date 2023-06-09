@@ -26,17 +26,20 @@ class indeed:
         self.job_beacon_company_name = "//span[@class='companyName']"
         self.next_button = "//a[@data-testid='pagination-page-next']"
 
+        #opens indeed.com
         self.driver.get("https://www.indeed.com/")
         return
 
     def search(self, job_title):
+        #types job_titles into search bar
+
+        #todo: let you search location and other configurations
         self.search_bar = self.wait.until(EC.presence_of_element_located((By.ID, 'text-input-what')))
         self.search_bar.send_keys(job_title)
         self.search_bar.send_keys(Keys.RETURN)
-        pass
 
     def loop_results(self):
-        # gets results from search page
+        # gets results from search page and scrolls through them
         # should get called whenever the next button is clicked
 
         driver = self.driver
@@ -62,16 +65,17 @@ class indeed:
             # Wait until the job's title text is present in the specified element (ID) on the page
             wait.until(EC.text_to_be_present_in_element((By.XPATH, xpath_expression), job.text))
 
-            # self.record_job(job.text, companies_on_page[index].text)
             initial_window_count = len(self.driver.window_handles)
-            #print("Initial window count: "+ initial_window_count)
+
             try:
                 # check if job can be applied through indeed's easy apply
+                #todo:
                 button = self.driver.find_element((By.XPATH, "//button[@id='indeedApplyButton']"))
                 button.click()
                 WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(initial_window_count + 1))
                 #driver.switch_to.window(driver.window_handles[-1])
             except:
+                #if a job cannot use easy apply
                 print("rejected: " + job.text)
                 continue
 
