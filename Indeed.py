@@ -95,12 +95,26 @@ class indeed:
 
     def should_apply(self, job_title):
         driver = self.driver
-        prohibited_job_titles = ["manager", "senior", "supervisor", "lead"]
+
+        with open('prohibited_jobs', 'r') as file:
+            menu_content = file.read()
+
+        # Step 2: Split the text into individual lines
+        lines = menu_content.split('\n')
+
+        # Step 3: Remove leading/trailing whitespace from each line
+        lines = [line.strip() for line in lines]
+
+        # Step 4: Store the lines as separate elements in a list
+        prohibited_job_titles = lines
+
+        print(prohibited_job_titles)
+        #prohibited_job_titles = ["director", "software engineer","manager", "senior", "supervisor", "lead", "producer"]
 
         if self.job_is_prohibited(prohibited_job_titles,job_title):
-            print("Job is permitted")
+            print("🟩")
         else:
-            print("Job is forbidden")
+            print("🛑")
 
         # puts job title in all caps
         # checks if job title is in list of prohibited job titles
@@ -116,6 +130,7 @@ class indeed:
     def job_is_prohibited(self,prohibited_job_titles, job_title):
         for prohibited_job in prohibited_job_titles:
             if prohibited_job.lower() in job_title.lower():
+                print(prohibited_job.lower())
                 return False
         return True
 

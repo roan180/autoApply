@@ -9,7 +9,7 @@ indeed = indeed()
 
 driver = indeed.get_driver()
 
-indeed.search("Software QA Manager")
+indeed.search("Software QA")
 
 indeed.loop_results()
 
