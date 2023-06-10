@@ -69,7 +69,7 @@ class indeed:
 
             try:
                 # check if job can be applied through indeed's easy apply
-                #todo:
+                #todo: you betta werq
                 button = self.driver.find_element((By.XPATH, "//button[@id='indeedApplyButton']"))
                 button.click()
                 WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(initial_window_count + 1))
