@@ -32,7 +32,7 @@ class indeed:
 
     def search(self, job_title):
         #types job_titles into search bar
-
+        #testing
         #todo: let you search location and other configurations
         self.search_bar = self.wait.until(EC.presence_of_element_located((By.ID, 'text-input-what')))
         self.search_bar.send_keys(job_title)
