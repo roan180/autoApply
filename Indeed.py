@@ -57,7 +57,9 @@ class indeed:
         for index, job in enumerate(jobs_on_page):
             driver.switch_to.window(driver.window_handles[0])
             job.click()
-            print(job.text, end=' --- ')
+            print(job.text, end=": ")
+            self.should_apply(job.text)
+
 
             # Build XPath expression to locate the job based on its title
             xpath_expression = f'//div[@class="jobsearch-InfoHeaderContainer"]//span[contains(text(),"{job.text}")]'
@@ -76,7 +78,7 @@ class indeed:
                 #driver.switch_to.window(driver.window_handles[-1])
             except:
                 #if a job cannot use easy apply
-                print("rejected: " + job.text)
+                #print("rejected: " + job.text)
                 continue
 
             # wait.until(EC.presence_of_element_located(By.XPATH, "//*[text()='Add a resume for the employer']"))
@@ -94,6 +96,12 @@ class indeed:
     def should_apply(self, job_title):
         driver = self.driver
         prohibited_job_titles = ["manager", "senior", "supervisor", "lead"]
+
+        if self.job_is_prohibited(prohibited_job_titles,job_title):
+            print("Job is permitted")
+        else:
+            print("Job is forbidden")
+
         # puts job title in all caps
         # checks if job title is in list of prohibited job titles
 
@@ -103,6 +111,12 @@ class indeed:
         #    print(self.driver.find_elements(By.XPATH,"//div[@id='salaryInfoAndJobType']").text())
         # except AttributeError:
         #    print("No text")
+        return True
+
+    def job_is_prohibited(self,prohibited_job_titles, job_title):
+        for prohibited_job in prohibited_job_titles:
+            if prohibited_job.lower() in job_title.lower():
+                return False
         return True
 
     def next(self):

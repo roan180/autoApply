@@ -9,11 +9,11 @@ indeed = indeed()
 
 driver = indeed.get_driver()
 
-indeed.search("Software QA")
+indeed.search("Software QA Manager")
 
 indeed.loop_results()
 
-indeed.organize_results()
+#indeed.organize_results()
 
 print("done")
 
