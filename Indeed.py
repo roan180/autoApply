@@ -91,7 +91,7 @@ class indeed:
                 return True
         return False
 
-    def should_apply(self):
+    def should_apply(self, job_title):
         driver = self.driver
         prohibited_job_titles = ["manager", "senior", "supervisor", "lead"]
         # puts job title in all caps
@@ -103,6 +103,7 @@ class indeed:
         #    print(self.driver.find_elements(By.XPATH,"//div[@id='salaryInfoAndJobType']").text())
         # except AttributeError:
         #    print("No text")
+        return True
 
     def next(self):
         # clicks the next button on the results page
