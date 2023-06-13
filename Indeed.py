@@ -31,6 +31,7 @@ class indeed:
         return
 
     def search(self, job_title):
+        # opens indeed.com
         self.driver.get("https://www.indeed.com/")
 
         search_bar = self.wait.until(EC.presence_of_element_located((By.ID, 'text-input-what')))
