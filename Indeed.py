@@ -12,7 +12,7 @@ import random
 class indeed:
     def __init__(self):
         #user_data_dir = r'C:\Users\ericb\AppData\Local\Google\Chrome\User Data' #gaming PC
-        user_data_dir = r'Users/Eric Salazar/Library/Application Support/Google/Chrome/Default' #laptop
+        user_data_dir = r'Users/Eric Salazar/Library/Application Support/Google/Chrome' #laptop
 
         # Configure Chrome options
         options = Options()
@@ -116,21 +116,13 @@ class indeed:
     def should_apply(self, job_title):
         driver = self.driver
 
+        #reads file into variable and cleans the file
         with open('prohibited_jobs', 'r') as file:
             menu_content = file.read()
-            #print("MENU CONTENT: " + menu_content + "---END")
-
-        # Step 2: Split the text into individual lines
         lines = menu_content.split('\n')
-
-        # Step 3: Remove leading/trailing whitespace from each line
         lines = [line.strip() for line in lines]
-
-        # Step 4: Store the lines as separate elements in a list
         prohibited_job_titles = lines
 
-        #print(prohibited_job_titles)
-        #prohibited_job_titles = ["director", "software engineer","manager", "senior", "supervisor", "lead", "producer"]
 
         if self.job_is_allowed(prohibited_job_titles, job_title):
             return True
