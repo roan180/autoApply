@@ -1,5 +1,0 @@
-#Locator for job name: //a[contains(@class,'JobTitle')]
-jobs_beacon = "//div[@class='job_seen_beacon']"
-jobs_beacon_a = "//a[contains(@class,'jcs-JobTitle')]"
-job_beacon_title = "//span[contains(@id,'jobTitle')]"
-job_beacon_company_name = "//span[@class='companyName']"
