@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 import random
+import database
 
 
 class indeed:
@@ -141,24 +142,6 @@ class indeed:
         # returns true if can click, otherwise returns false
         pass
 
-    def organize_results(self):
-        with open('tracks.txt', 'r') as file:
-            lines = file.readlines()
-
-        # Sort the lines alphabetically
-        lines.sort()
-
-        # Write the sorted lines back to the text file
-        with open('tracks.txt', 'w') as file:
-            file.writelines(lines)
-
-    def record_job(self, job_name, company_name):
-        with open('tracks.txt', 'a') as file:
-            file.write(company_name + " || " + job_name + "\n")
-
-        self.wait.until(EC.presence_of_element_located(
-            (By.XPATH, f"//div[@class='jobsearch-InfoHeaderContainer']//span[text()='{job_name}']")))
-
     def apply(self):
         print("Applied!")
         # applies to job
@@ -166,10 +149,6 @@ class indeed:
         # pauses if doesn't know answer and prompts user
         # records questions and once prompt is exited, saves the answers
         # submits job aplication
-        pass
-
-    def job_in_database(self, job_title, company):
-        # determines if job_title and company are recorded in database
         pass
 
     def get_driver(self):
