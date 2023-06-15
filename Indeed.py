@@ -73,11 +73,6 @@ class indeed:
             if self.should_apply(job.text):
                 driver.switch_to.window(driver.window_handles[0])
                 job.click()
-                print(job.text, end=" ")
-                if (self.database.job_in_database(job.text, companies_on_page[index].text)):
-                    print("is in database")
-                else:
-                    print("is not in database")
                 self.database.record_job(job.text, companies_on_page[index].text)
 
 
@@ -100,7 +95,7 @@ class indeed:
                             # Handle the "Apply now" button case
                             self.driver.find_element(By.XPATH, "//button[@id='indeedApplyButton']").click()
                             WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(initial_window_count + 1))
-                            #self.apply()
+                            self.apply(job.text)
                         else:
                             #print()
                             pass
@@ -160,8 +155,13 @@ class indeed:
         # returns true if can click, otherwise returns false
         pass
 
-    def apply(self):
+    def apply(self, job_title):
         print("Applied!")
+        time.sleep(1)
+        print(self.driver.find_element((By.XPATH,'//h2[contains(@class, "ia-JobHeader-title")]')).text)
+        #self.wait.until(EC.text_to_be_present_in_element('//h2[contains(@class, "ia-JobHeader-title")]', job_title))
+
+
         # applies to job
         # answers questions
         # pauses if doesn't know answer and prompts user
