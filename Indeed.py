@@ -58,11 +58,17 @@ class indeed:
 
         # Loop through each job on the page
         for index, job in enumerate(jobs_on_page):
+
             time.sleep(random.uniform(0, 2))
             if self.should_apply(job.text):
                 driver.switch_to.window(driver.window_handles[0])
                 job.click()
-                print(job.text, end=": ")
+                print(job.text, end=" ")
+                if (self.database.job_in_database(job.text, companies_on_page[index].text)):
+                    print("is in database")
+                else:
+                    print("is not in database")
+                self.database.record_job(job.text, companies_on_page[index].text)
 
 
             # Build XPath expression to locate the job based on its title
@@ -84,10 +90,9 @@ class indeed:
                             # Handle the "Apply now" button case
                             self.driver.find_element(By.XPATH, "//button[@id='indeedApplyButton']").click()
                             WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(initial_window_count + 1))
-                            self.apply()
-                            self.database.record_job(job.text, "XYZ company")
+                            #self.apply()
                         else:
-                            print()
+                            #print()
                             pass
                             # Handle the "Apply on company site" button case
                             #print("Apply on company site button found")

@@ -12,8 +12,6 @@ indeed.search("Software QA")
 
 indeed.loop_results()
 
-#indeed.organize_results()
-
 print("done")
 
 

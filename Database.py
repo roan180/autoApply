@@ -3,12 +3,14 @@ class Database:
     def __init__(self):
         pass
     def job_in_database(self, job_title, company):
-        # determines if job_title and company are recorded in database
-        pass
+        with open('database.txt') as f:
+            if (job_title + " || " + company) in f.read():
+                return True
+        return False
 
     def record_job(self, job_name, company_name):
         with open('database.txt', 'a') as file:
-            file.write(company_name + " || " + job_name + "\n")
+            file.write(job_name + " || " + company_name + "\n")
 
 
     def organize_results(self):

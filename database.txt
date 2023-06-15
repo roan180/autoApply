@@ -1,3 +1,10 @@
-XYZ company || Quality Engineer
-XYZ company || Purchaser and QA (Food Quality Assurance Analyst)
-XYZ company || TEST TECHNICIAN OR ENGINEER
+Quality Engineer || FEI-Zyfer Inc
+Engineer, Quality Assurance || Moog Inc.
+Purchaser and QA (Food Quality Assurance Analyst) || Ikko International Trading LLC
+TEST TECHNICIAN OR ENGINEER || Engineered Magnetics Inc
+Salesforce Tester || Deloitte
+Quality Engineer || FEI-Zyfer Inc
+Engineer, Quality Assurance || Moog Inc.
+Purchaser and QA (Food Quality Assurance Analyst) || Ikko International Trading LLC
+TEST TECHNICIAN OR ENGINEER || Engineered Magnetics Inc
+Salesforce Tester || Deloitte
