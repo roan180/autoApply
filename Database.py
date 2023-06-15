@@ -12,7 +12,6 @@ class Database:
         with open('database.txt', 'a') as file:
             file.write(job_name + " || " + company_name + "\n")
 
-
     def organize_results(self):
         with open('tracks.txt', 'r') as file:
             lines = file.readlines()

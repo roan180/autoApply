@@ -33,13 +33,23 @@ class indeed:
         self.next_button = "//a[@data-testid='pagination-page-next']"
         return
 
-    def search(self, job_title):
+    def search(self, job_title, location=""):
         # opens indeed.com
         self.driver.get("https://www.indeed.com/")
 
-        search_bar = self.wait.until(EC.presence_of_element_located((By.ID, 'text-input-what')))
-        search_bar.send_keys(job_title)
-        search_bar.send_keys(Keys.RETURN)
+        search_bar_where = self.wait.until(EC.presence_of_element_located((By.ID, 'text-input-where')))
+        search_bar_what = self.wait.until(EC.presence_of_element_located((By.ID, 'text-input-what')))
+
+        while not search_bar_where.get_attribute("value") == "":
+            search_bar_where.send_keys(Keys.BACKSPACE)
+
+        while not search_bar_what.get_attribute("value") == "":
+            search_bar_what.send_keys(Keys.BACKSPACE)
+
+        search_bar_what.send_keys(job_title)
+        search_bar_where.send_keys(location)
+
+        search_bar_what.send_keys(Keys.RETURN)
 
     def loop_results(self):
         # gets results from search page and scrolls through them
