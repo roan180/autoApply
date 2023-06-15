@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 import random
-import database
+from Database import Database
 
 
 class indeed:
@@ -18,6 +18,8 @@ class indeed:
         # Configure Chrome options
         options = Options()
         options.add_argument(f'--user-data-dir={user_data_dir}')
+
+        self.database = Database()
 
         # Create the ChromeDriver instance with the specified user data directory
         self.driver = webdriver.Chrome(options=options)
@@ -83,6 +85,7 @@ class indeed:
                             self.driver.find_element(By.XPATH, "//button[@id='indeedApplyButton']").click()
                             WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(initial_window_count + 1))
                             self.apply()
+                            self.database.record_job(job.text, "XYZ company")
                         else:
                             print()
                             pass
@@ -156,12 +159,3 @@ class indeed:
 
     def __del__(self):
         self.driver.quit()
-
-# workflow
-# go to indeed
-# search feature
-# get results
-# loop through results
-# land on job, determine if need to apply
-# if apply:
-# apply

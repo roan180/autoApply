@@ -8,8 +8,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 indeed = indeed()
 
-driver = indeed.get_driver()
-
 indeed.search("Software QA")
 
 indeed.loop_results()
