@@ -83,6 +83,7 @@ class indeed:
                             WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(initial_window_count + 1))
                             self.apply()
                         else:
+                            print()
                             pass
                             # Handle the "Apply on company site" button case
                             #print("Apply on company site button found")
