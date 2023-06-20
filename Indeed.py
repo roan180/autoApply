@@ -1,4 +1,3 @@
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
@@ -8,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import random
 from Database import Database
+from selenium.webdriver import ActionChains
 
 
 class indeed:
@@ -68,7 +68,6 @@ class indeed:
 
         # Loop through each job on the page
         for index, job in enumerate(jobs_on_page):
-
             time.sleep(random.uniform(0, 2))
             if self.should_apply(job.text):
                 driver.switch_to.window(driver.window_handles[0])
@@ -156,18 +155,25 @@ class indeed:
         pass
 
     def apply(self, job_title):
-        print("Applied!")
-        time.sleep(1)
-        print(self.driver.find_element((By.XPATH,'//h2[contains(@class, "ia-JobHeader-title")]')).text)
-        #self.wait.until(EC.text_to_be_present_in_element('//h2[contains(@class, "ia-JobHeader-title")]', job_title))
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+        print("URL: " + self.driver.current_url)
+        time.sleep(3)
 
+        # try:
+            # button = self.wait.until(EC.presence_of_element_located
+            #                          ((By.XPATH, '//button[contains(@class, "ia-continueButton")]')))
 
-        # applies to job
-        # answers questions
-        # pauses if doesn't know answer and prompts user
-        # records questions and once prompt is exited, saves the answers
-        # submits job aplication
-        pass
+        button = self.driver.find_element(By.CLASS_NAME, "ia-continueButton")
+        print("Button: " + type(button))
+        print()
+        # except:
+        #print("did not find button")
+            # time.sleep(300)
+        #self.driver.quit()
+        button.click()
+
+            # print("did not click the button")
+        self.driver.quit()
 
     def get_driver(self):
         return self.driver
